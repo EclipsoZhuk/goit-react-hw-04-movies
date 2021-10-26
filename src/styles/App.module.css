@@ -1,0 +1,26 @@
+.navigation {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+.link {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #000001;
+}
+.link:hover {
+    background-color: #d6d6dba2;
+    color: #ca2b60;
+    border-bottom: #ca2b60 solid 4px;
+}
+.linkActive {
+    color: #4169e1;
+}
+.item {
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #000001;
+}
