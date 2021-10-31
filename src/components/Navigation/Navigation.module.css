@@ -2,10 +2,12 @@
     display: flex;
     flex-direction: row;
     margin-left: 20px;
+    height: 55px;
 }
 .link {
     display: block;
     padding: 15px;
+    font-size: 22px;
     text-decoration: none;
     color: #000001;
 }
@@ -15,7 +17,7 @@
     border-bottom: #ca2b60 solid 4px;
 }
 .linkActive {
-    color: #4169e1;
+    color: #ca2b60;
 }
 .item {
     list-style-type: none;
