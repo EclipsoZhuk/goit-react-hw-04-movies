@@ -37,12 +37,15 @@ export default function App() {
                 }
             >
                 <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/movies" component={MoviesPage} />
-                    <Route
-                        path="/movies/:movieId"
-                        component={MovieDetailsPage}
-                    />
+                    <Route exact path="/">
+                        <HomePage />
+                    </Route>
+                    <Route exact path="/movies">
+                        <MoviesPage />
+                    </Route>
+                    <Route path="/movies/:movieId">
+                        <MovieDetailsPage />
+                    </Route>
                     <Route component={NotFoundView} />
                 </Switch>
             </Suspense>

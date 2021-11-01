@@ -14,6 +14,7 @@ import Loader from 'react-loader-spinner';
 import NotFoundPage from '../NotFoundPage';
 import Status from '../../services/statusLoader';
 import s from './MovieDetailsPage.module.css';
+import MovieDetailsMainInfo from './MovieDetailsMainInfo';
 
 const Cast = lazy(() =>
     import('../../components/Cast' /* webpackChunkName: "cast"*/),
@@ -86,27 +87,9 @@ export default function MovieDetailsPage() {
                 {status === Status.REJECTED && <NotFoundPage />}
                 {status === Status.RESOLVED && (
                     <>
-                        <div className={s.wrapper}>
-                            <img
-                                className={s.images}
-                                src={movie.src}
-                                alt={movie.title}
-                            />
-                            <div className={s.description}>
-                                <h2 className={s.movieTitle}>{movie.title}</h2>
-                                <h3 className={s.title}>Score</h3>
-                                <p className={s.info}>{movie.score}</p>
-                                <h3 className={s.title}>About</h3>
-                                <p className={s.info}>{movie.overview}</p>
-                                <h3 className={s.title}>Genres</h3>
-                                <ul className={s.genre}>
-                                    {movie.genres.map(genre => (
-                                        <li key={genre.id}>{genre.name}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                        <ul className={s.submenu}>
+                        <MovieDetailsMainInfo movie={movie} />
+
+                        <ul className={s.subMenu}>
                             <li>
                                 <NavLink
                                     to={{
@@ -154,10 +137,10 @@ export default function MovieDetailsPage() {
                                 }
                             >
                                 <Route path={`${path}/cast`}>
-                                    {status === Status.RESOLVED && <Cast />}
+                                    <Cast />
                                 </Route>
                                 <Route path={`${path}/reviews`}>
-                                    {status === Status.RESOLVED && <Reviews />}
+                                    <Reviews />
                                 </Route>
                             </Suspense>
                         }

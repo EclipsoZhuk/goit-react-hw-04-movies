@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import { useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
-import s from './MoviesPage.module.css';
 import Loader from 'react-loader-spinner';
 import Status from '../../services/statusLoader';
 import moviesFetchApi from '../../services/moviesFetchApi';
 import SearchBar from '../../components/SearchBar';
 import NotFoundPage from '../NotFoundPage';
-import noImageFound from '../../images/not_found.gif';
+import PageList from '../../components/PageList';
 
 export default function MoviesPage() {
     const history = useHistory();
@@ -76,33 +74,7 @@ export default function MoviesPage() {
 
             {status === Status.REJECTED && <NotFoundPage />}
             {status === Status.RESOLVED && (
-                <>
-                    <ul className={s.list}>
-                        {movies.map(movie => (
-                            <li key={movie.id} className={s.item}>
-                                <Link
-                                    to={{
-                                        pathname: `${url}/${movie.id}`,
-                                        state: { from: location },
-                                    }}
-                                >
-                                    <img
-                                        src={
-                                            movie.poster_path
-                                                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                                                : noImageFound
-                                        }
-                                        alt={movie.title}
-                                        className={s.poster}
-                                    />
-                                </Link>
-                                <div className={s.titleBox}>
-                                    <p className={s.title}>{movie.title}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </>
+                <PageList movies={movies} url={url} location={location} />
             )}
         </>
     );

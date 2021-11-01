@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import notFound from '../../images/not_found.gif';
 import moviesFetchApi from '../../services/moviesFetchApi';
-import s from './HomePage.module.css';
 import NotFoundPage from '../NotFoundPage';
 import Status from '../../services/statusLoader';
+import PageList from '../../components/PageList';
 
-export default function HomeView() {
+export default function HomePage() {
     const [movies, setMovies] = useState(null);
     const [status, setStatus] = useState(Status.IDLE);
     const [error, setError] = useState(null);
@@ -42,26 +40,7 @@ export default function HomeView() {
             {status === Status.RESOLVED && (
                 <>
                     <h1 className="Title"> Trending today</h1>
-                    <ul className={s.list}>
-                        {movies.map(({ id, poster_path, title }) => (
-                            <li key={id} className={s.item}>
-                                <Link to={{ pathname: `movies/${id}` }}>
-                                    <img
-                                        className={s.images}
-                                        src={
-                                            poster_path
-                                                ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                                : notFound
-                                        }
-                                        alt={title}
-                                    />
-                                </Link>
-                                <div className={s.nameBox}>
-                                    <p className={s.name}>{title}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <PageList movies={movies} url={'movies'} />
                 </>
             )}
         </main>
