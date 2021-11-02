@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import baseImageURL from '../../services/baseImageURL';
 import moviesFetchApi from '../../services/moviesFetchApi';
 import noImageFound from '../../images/not_found.gif';
 import s from './Cast.module.css';
-import NotFoundPage from '../../views/NotFoundPage';
 import Loader from 'react-loader-spinner';
 import Status from '../../services/statusLoader';
 
@@ -45,7 +44,7 @@ export default function Cast() {
                 />
             )}
 
-            {status === Status.REJECTED && <NotFoundPage />}
+            {status === Status.REJECTED && <Redirect to="/error" />}
 
             {status === Status.RESOLVED && (
                 <ul className={s.cast}>

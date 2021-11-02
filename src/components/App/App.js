@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'react-loader-spinner';
@@ -46,7 +46,8 @@ export default function App() {
                     <Route path="/movies/:movieId">
                         <MovieDetailsPage />
                     </Route>
-                    <Route component={NotFoundView} />
+                    <Route path="/error" component={NotFoundView} />
+                    <Redirect to="/error" />
                 </Switch>
             </Suspense>
 

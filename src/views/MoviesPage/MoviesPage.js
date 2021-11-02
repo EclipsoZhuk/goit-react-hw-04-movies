@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import {
+    Redirect,
+    useRouteMatch,
+    useHistory,
+    useLocation,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import Status from '../../services/statusLoader';
 import moviesFetchApi from '../../services/moviesFetchApi';
 import SearchBar from '../../components/SearchBar';
-import NotFoundPage from '../NotFoundPage';
 import PageList from '../../components/PageList';
 
 export default function MoviesPage() {
@@ -72,7 +76,7 @@ export default function MoviesPage() {
                 />
             )}
 
-            {status === Status.REJECTED && <NotFoundPage />}
+            {status === Status.REJECTED && <Redirect to="/error" />}
             {status === Status.RESOLVED && (
                 <PageList movies={movies} url={url} location={location} />
             )}

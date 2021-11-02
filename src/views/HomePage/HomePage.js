@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Redirect } from 'react';
 import Loader from 'react-loader-spinner';
 import moviesFetchApi from '../../services/moviesFetchApi';
-import NotFoundPage from '../NotFoundPage';
 import Status from '../../services/statusLoader';
 import PageList from '../../components/PageList';
 
@@ -36,7 +35,7 @@ export default function HomePage() {
                     width={300}
                 />
             )}
-            {status === Status.REJECTED && <NotFoundPage />}
+            {status === Status.REJECTED && <Redirect to="/error" />}
             {status === Status.RESOLVED && (
                 <>
                     <h1 className="Title"> Trending today</h1>

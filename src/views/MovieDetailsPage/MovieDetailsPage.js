@@ -1,5 +1,6 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import {
+    Redirect,
     NavLink,
     useParams,
     useRouteMatch,
@@ -11,7 +12,6 @@ import moviesFetchApi from '../../services/moviesFetchApi';
 import baseImageURL from '../../services/baseImageURL';
 import noImageFound from '../../images/not_found.gif';
 import Loader from 'react-loader-spinner';
-import NotFoundPage from '../NotFoundPage';
 import Status from '../../services/statusLoader';
 import s from './MovieDetailsPage.module.css';
 import MovieDetailsMainInfo from './MovieDetailsMainInfo';
@@ -84,7 +84,7 @@ export default function MovieDetailsPage() {
                     />
                 )}
 
-                {status === Status.REJECTED && <NotFoundPage />}
+                {status === Status.REJECTED && <Redirect to="/error" />}
                 {status === Status.RESOLVED && (
                     <>
                         <MovieDetailsMainInfo movie={movie} />
